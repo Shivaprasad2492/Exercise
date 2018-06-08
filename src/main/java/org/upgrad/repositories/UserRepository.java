@@ -16,6 +16,12 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     @Query(nativeQuery = true,value="SELECT * FROM USERS WHERE UPPER(USER_NAME) = UPPER (?1)")
     String findByUserName(String user_Name);
 
+    @Query(nativeQuery = true,value="SELECT PASSWORD FROM USERS WHERE UPPER(USER_NAME) = UPPER (?1)")
+    String findUserPassword(String user_name);
+
+    @Query(nativeQuery = true,value="SELECT ROLE FROM USERS WHERE UPPER(USER_NAME) = UPPER (?1)")
+    String findUserRole(String user_name);
+
     @Transactional
     @Modifying
     @Query(nativeQuery = true,value="INSERT INTO USERS (USER_NAME,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD) VALUES (?1,?2,?3,?4,?5)")
